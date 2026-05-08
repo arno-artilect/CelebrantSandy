@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="description" content="Celebrant Sandy creates bespoke wedding, baby naming, and vow renewal ceremonies in South Africa. Elegant, heartfelt, and uniquely yours.">
+  <meta name="keywords" content="celebrant, wedding celebrant, baby naming, ceremony, South Africa, vow renewal, marriage celebrant, sandy">
+  <meta name="author" content="Celebrant Sandy">
+  <meta property="og:title" content="Celebrant Sandy | Bespoke Ceremonies">
+  <meta property="og:description" content="Because in your dreams, every detail matters. Elegant ceremonies crafted with heart.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.celebrantsandy.co.za">
+  <meta property="og:image" content="https://www.celebrantsandy.co.za/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Celebrant Sandy | Bespoke Ceremonies in South Africa</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a0a0a;
+      color: #f5f0eb;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, .serif {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+    }
+    .script-font {
+      font-family: 'Great Vibes', cursive;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    :root {
+      --black: #0a0a0a;
+      --pink-accent: #d97a9a;
+      --pink-light: #f2a6c4;
+      --white: #f5f0eb;
+    }
+
+    /* HEADER */
+    .site-header {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(217, 122, 154, 0.15);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .logo img {
+      height: 50px;
+      width: auto;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 2.2rem;
+      align-items: center;
+      list-style: none;
+    }
+    .nav-menu a {
+      font-weight: 400;
+      color: var(--white);
+      transition: color 0.3s ease;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+    }
+    .nav-menu a:hover {
+      color: var(--pink-accent);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: var(--white);
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+      .nav-menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 0;
+        gap: 1.8rem;
+        display: none;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+      }
+      .nav-menu.active {
+        display: flex;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      height: 90vh;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 50%, #1a0a1f, #000000);
+    }
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.5;
+    }
+    .hero-overlay {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+      max-width: 700px;
+    }
+    .hero-overlay img {
+      max-width: 400px;
+      margin: 0 auto 20px;
+      filter: drop-shadow(0 0 40px rgba(217, 122, 154, 0.2));
+    }
+    .hero-overlay h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .hero-overlay p {
+      font-size: 1.3rem;
+      color: var(--pink-light);
+      font-weight: 300;
+      margin-bottom: 40px;
+    }
+    .btn {
+      background: transparent;
+      border: 1px solid var(--pink-accent);
+      color: var(--pink-accent);
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      display: inline-block;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    .btn:hover {
+      background: var(--pink-accent);
+      color: var(--black);
+      box-shadow: 0 0 30px rgba(217, 122, 154, 0.4);
+    }
+
+    /* PAGINATION DOTS */
+    .pagination-dots {
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 10;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .dot.active {
+      background: var(--pink-accent);
+      border-color: var(--pink-accent);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 80px 0;
+    }
+    .section-title {
+      font-size: 2.8rem;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--pink-light);
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      margin-bottom: 3rem;
+    }
+
+    /* EVENTS CAROUSEL */
+    .carousel-container {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      overflow: hidden;
+      padding: 0 10px;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .event-card {
+      flex: 0 0 100%;
+      background: #141414;
+      border: 1px solid rgba(217, 122, 154, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    @media (min-width: 768px) {
+      .event-card {
+        flex: 0 0 calc(50% - 20px);
+        margin: 0 10px;
+      }
+    }
+    .event-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    .event-details {
+      padding: 25px;
+    }
+    .event-details h3 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      color: var(--pink-accent);
+    }
+    .event-details p {
+      color: #ccc;
+      font-weight: 300;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(10, 10, 10, 0.8);
+      border: 1px solid rgba(217, 122, 154, 0.3);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 5;
+      color: var(--white);
+      transition: 0.3s;
+    }
+    .carousel-btn:hover {
+      background: var(--pink-accent);
+      border-color: var(--pink-accent);
+    }
+    .prev-btn {
+      left: 5px;
+    }
+    .next-btn {
+      right: 5px;
+    }
+
+    /* CONTACT FORM */
+    .contact-form {
+      max-width: 650px;
+      margin: 0 auto;
+      background: #141414;
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid rgba(217, 122, 154, 0.1);
+    }
+    .form-group {
+      margin-bottom: 22px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid #333;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      background: #1a1a1a;
+      color: var(--white);
+      transition: 0.3s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--pink-accent);
+      box-shadow: 0 0 0 3px rgba(217, 122, 154, 0.15);
+    }
+    .success-message {
+      display: none;
+      background: #1a2a1a;
+      color: #a8d5a8;
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 15px;
+      font-weight: 500;
+    }
+
+    /* FOOTER WITH SOCIALS - BRAND COLORED */
+    .footer {
+      background: #050505;
+      padding: 50px 0 30px;
+      text-align: center;
+      border-top: 1px solid rgba(217, 122, 154, 0.1);
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin: 20px 0 30px;
+    }
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      transition: all 0.4s ease;
+      text-decoration: none;
+    }
+    .social-icon svg {
+      width: 28px;
+      height: 28px;
+      transition: all 0.4s ease;
+    }
+    /* Facebook - brand blue */
+    .social-icon.facebook svg {
+      fill: #1877F2;
+    }
+    .social-icon.facebook:hover {
+      background: #1877F2;
+    }
+    .social-icon.facebook:hover svg {
+      fill: #ffffff;
+    }
+    /* Instagram - brand pink */
+    .social-icon.instagram svg {
+      fill: #E1306C;
+    }
+    .social-icon.instagram:hover {
+      background: #E1306C;
+    }
+    .social-icon.instagram:hover svg {
+      fill: #ffffff;
+    }
+    /* WhatsApp - brand green */
+    .social-icon.whatsapp svg {
+      fill: #25D366;
+    }
+    .social-icon.whatsapp:hover {
+      background: #25D366;
+    }
+    .social-icon.whatsapp:hover svg {
+      fill: #ffffff;
+    }
+    .copyright {
+      font-size: 0.85rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <img src="logo.png" alt="Celebrant Sandy">
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <video class="hero-video" autoplay muted loop playsinline poster="event_001.jpg">
+        <source src="hero_background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="hero-overlay">
+        <img src="logo.png" alt="Celebrant Sandy">
+        <p class="script-font" style="font-size: 1.8rem; color: var(--pink-accent); margin-top: -10px;">Because in your dreams, every detail matters</p>
+        <a href="#contact" class="btn">Book Your Ceremony</a>
+      </div>
+      <div class="pagination-dots">
+        <span class="dot active" data-section="home"></span>
+        <span class="dot" data-section="events"></span>
+        <span class="dot" data-section="contact"></span>
+      </div>
+    </section>
+
+    <!-- EVENTS CAROUSEL -->
+    <section id="events">
+      <div class="container">
+        <h2 class="section-title">Cherished Ceremonies</h2>
+        <div class="section-subtitle">Each one uniquely yours</div>
+        <div class="carousel-container" id="carouselContainer">
+          <div class="carousel-track" id="carouselTrack"></div>
+          <button class="carousel-btn prev-btn" id="prevBtn" aria-label="Previous event">‹</button>
+          <button class="carousel-btn next-btn" id="nextBtn" aria-label="Next event">›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Let's Create Magic</h2>
+        <div class="section-subtitle">Reach out and let's begin</div>
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="form-group">
+              <input type="text" id="name" placeholder="Your Name *" required>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" placeholder="Your Email *" required>
+            </div>
+            <div class="form-group">
+              <textarea id="message" rows="5" placeholder="Tell me about your dream ceremony..." required></textarea>
+            </div>
+            <button type="submit" class="btn" style="width:100%;">Send Message</button>
+          </form>
+          <div class="success-message" id="successMessage">
+            ✨ Thank you! Your message has been sent to Sandy. She'll reply soon.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER with SOCIALS -->
+  <footer class="footer">
+    <div style="text-align: center; margin-bottom: 10px;">
+      <h3 style="color: #ff6b6b; font-size: 1.5rem; font-weight: 400;">Follow Us</h3>
+    </div>
+    
+    <div class="social-icons">
+      <!-- Facebook -->
+      <a href="#" target="_blank" rel="noopener" aria-label="Facebook" class="social-icon facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+        </svg>
+      </a>
+      
+      <!-- Instagram -->
+      <a href="#" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </a>
+      
+      <!-- WhatsApp -->
+      <a href="#" target="_blank" rel="noopener" aria-label="WhatsApp" class="social-icon whatsapp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+      </a>
+    </div>
+    
+    <div style="text-align: center; margin-bottom: 20px;">
+      <p style="color: #aaa; font-size: 0.9rem;">Connect with us on social media for updates and tips!</p>
+    </div>
+    
+    <p class="copyright">© 2026 Celebrant Sandy. All rights reserved. | Because in your dreams, every detail matters.</p>
+  </footer>
+
+  <script>
+    (function() {
+      // Mobile menu
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+      hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+        hamburger.setAttribute('aria-expanded', !expanded);
+        navMenu.classList.toggle('active');
+      });
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+            if (navMenu.classList.contains('active')) {
+              navMenu.classList.remove('active');
+              hamburger.setAttribute('aria-expanded', 'false');
+            }
+          }
+        });
+      });
+
+      // Pagination dots
+      document.querySelectorAll('.dot').forEach(dot => {
+        dot.addEventListener('click', function() {
+          const sectionId = this.getAttribute('data-section');
+          const section = document.getElementById(sectionId);
+          if (section) section.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      // Update active dot on scroll
+      const sections = document.querySelectorAll('section');
+      const dots = document.querySelectorAll('.dot');
+      window.addEventListener('scroll', () => {
+        let current = 'home';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          if (window.scrollY >= sectionTop) current = section.getAttribute('id');
+        });
+        dots.forEach(dot => {
+          dot.classList.remove('active');
+          if (dot.getAttribute('data-section') === current) dot.classList.add('active');
+        });
+      });
+
+      // Events carousel
+      const events = [
+        { event_name: "Enchanted Garden Wedding", event_description: "A romantic ceremony surrounded by roses and ivy, personalized vows under a floral arch.", photo_list: ["event_001.jpg"] },
+        { event_name: "Starry Night Vow Renewal", event_description: "Intimate evening celebration with twinkling lights and a heartfelt reaffirmation of love.", photo_list: ["event_002.jpg"] },
+        { event_name: "Whimsical Baby Naming", event_description: "A joyful gathering to welcome a new soul, complete with blessings and butterfly release.", photo_list: ["event_003.jpg"] },
+        { event_name: "Sunset Beach Elopement", event_description: "Barefoot elegance on the sand, with the sound of waves as your ceremony music.", photo_list: ["event_004.jpg"] }
+      ];
+
+      const track = document.getElementById('carouselTrack');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      let currentIndex = 0;
+      let cardsPerView = 1;
+      let autoSlideInterval;
+
+      function updateCardsPerView() {
+        cardsPerView = window.innerWidth >= 768 ? 2 : 1;
+      }
+
+      function renderEvents() {
+        track.innerHTML = '';
+        events.forEach(event => {
+          const card = document.createElement('div');
+          card.className = 'event-card';
+          const imgSrc = event.photo_list[0] || 'event_001.jpg';
+          card.innerHTML = `
+            <img src="${imgSrc}" alt="${event.event_name}">
+            <div class="event-details">
+              <h3>${event.event_name}</h3>
+              <p>${event.event_description}</p>
+            </div>
+          `;
+          track.appendChild(card);
+        });
+      }
+
+      function moveCarousel() {
+        const firstCard = track.firstElementChild;
+        if (!firstCard) return;
+        const cardWidth = firstCard.offsetWidth + 20; // 20px for margins
+        const offset = currentIndex * cardWidth;
+        track.style.transform = `translateX(-${offset}px)`;
+      }
+
+      function nextSlide() {
+        const maxIndex = events.length - cardsPerView;
+        currentIndex = currentIndex < maxIndex ? currentIndex + 1 : 0;
+        moveCarousel();
+      }
+
+      function prevSlide() {
+        const maxIndex = events.length - cardsPerView;
+        currentIndex = currentIndex > 0 ? currentIndex - 1 : maxIndex;
+        moveCarousel();
+      }
+
+      function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(nextSlide, 5000);
+      }
+
+      updateCardsPerView();
+      renderEvents();
+      moveCarousel();
+      resetAutoSlide();
+
+      window.addEventListener('resize', () => {
+        updateCardsPerView();
+        if (currentIndex > events.length - cardsPerView) {
+          currentIndex = Math.max(0, events.length - cardsPerView);
+        }
+        moveCarousel();
+      });
+
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetAutoSlide();
+      });
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetAutoSlide();
+      });
+
+      // Contact form
+      const contactForm = document.getElementById('contactForm');
+      const successMsg = document.getElementById('successMessage');
+
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        
+        if (!name || !email || !message) {
+          alert('Please fill in all fields.');
+          return;
+        }
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+
+        successMsg.style.display = 'block';
+        contactForm.reset();
+        setTimeout(() => { successMsg.style.display = 'none'; }, 6000);
+      });
+    })();
+  </script>
+</body>
+</html>
