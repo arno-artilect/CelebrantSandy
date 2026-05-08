@@ -191,7 +191,6 @@
       transform: rotate(-45deg) translate(6px, -6px);
     }
     
-    /* Mobile menu - completely hidden by default */
     .mobile-menu-overlay {
       display: none;
       position: fixed;
@@ -371,6 +370,16 @@
       background: var(--pink-accent);
       border-color: var(--pink-accent);
     }
+    @media (max-width: 768px) {
+      .pagination-dots {
+        right: 8px;
+        gap: 10px;
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+      }
+    }
 
     /* SECTIONS */
     section {
@@ -389,20 +398,140 @@
       font-size: 1.8rem;
       margin-bottom: 3rem;
     }
+    @media (max-width: 768px) {
+      section {
+        padding: 50px 0;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .section-subtitle {
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+      }
+    }
 
-    /* EVENTS CAROUSEL */
+    /* WELCOME SECTION */
+    .welcome-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .welcome-content p {
+      font-size: 1.1rem;
+      color: #ccc;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    .welcome-content .signature {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: var(--pink-accent);
+      margin-top: 2rem;
+    }
+
+    /* WHY CHOOSE SECTION */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+    .feature-card {
+      background: #141414;
+      border: 1px solid rgba(217, 122, 154, 0.1);
+      border-radius: 12px;
+      padding: 35px 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+      border-color: rgba(217, 122, 154, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(217, 122, 154, 0.1);
+    }
+    .feature-card .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+    .feature-card h3 {
+      color: var(--pink-accent);
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .feature-card p {
+      color: #aaa;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .testimonial-card {
+      background: #141414;
+      border: 1px solid rgba(217, 122, 154, 0.1);
+      border-radius: 12px;
+      padding: 30px;
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      color: rgba(217, 122, 154, 0.2);
+      line-height: 1;
+    }
+    .testimonial-card .quote {
+      color: #ddd;
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 15px;
+      padding-top: 15px;
+    }
+    .testimonial-card .author {
+      color: var(--pink-accent);
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* EVENTS CAROUSEL - FIXED FOR MOBILE */
     .carousel-container {
       position: relative;
       max-width: 1100px;
       margin: 0 auto;
       overflow: hidden;
-      padding: 0 10px;
+      padding: 0 20px;
       touch-action: pan-y pinch-zoom;
     }
     .carousel-track {
       display: flex;
       transition: transform 0.5s ease-in-out;
       cursor: grab;
+      gap: 0;
     }
     .carousel-track:active {
       cursor: grabbing;
@@ -417,12 +546,6 @@
       flex-direction: column;
       user-select: none;
       -webkit-user-select: none;
-    }
-    @media (min-width: 768px) {
-      .event-card {
-        flex: 0 0 calc(50% - 20px);
-        margin: 0 10px;
-      }
     }
     .event-card img {
       width: 100%;
@@ -442,6 +565,39 @@
       color: #ccc;
       font-weight: 300;
     }
+    
+    /* Desktop: 2 cards with gap */
+    @media (min-width: 769px) {
+      .carousel-track {
+        gap: 20px;
+      }
+      .event-card {
+        flex: 0 0 calc(50% - 10px);
+      }
+    }
+    
+    /* Mobile: 1 card centered with padding */
+    @media (max-width: 768px) {
+      .carousel-container {
+        padding: 0 16px;
+      }
+      .carousel-track {
+        gap: 0;
+      }
+      .event-card {
+        flex: 0 0 100%;
+      }
+      .event-card img {
+        height: 220px;
+      }
+      .event-details {
+        padding: 20px;
+      }
+      .event-details h3 {
+        font-size: 1.4rem;
+      }
+    }
+
     .carousel-btn {
       position: absolute;
       top: 50%;
@@ -456,16 +612,32 @@
       z-index: 5;
       color: var(--white);
       transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .carousel-btn:hover {
       background: var(--pink-accent);
       border-color: var(--pink-accent);
     }
     .prev-btn {
-      left: 5px;
+      left: 2px;
     }
     .next-btn {
-      right: 5px;
+      right: 2px;
+    }
+    @media (max-width: 768px) {
+      .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+      }
+      .prev-btn {
+        left: 4px;
+      }
+      .next-btn {
+        right: 4px;
+      }
     }
 
     /* CONTACT FORM */
@@ -503,6 +675,11 @@
       border-radius: 12px;
       margin-top: 15px;
       font-weight: 500;
+    }
+    @media (max-width: 768px) {
+      .contact-form {
+        padding: 25px;
+      }
     }
 
     /* FLOATING SOCIAL ICONS */
@@ -552,6 +729,21 @@
     .floating-socials .fs-icon.whatsapp svg { fill: #25D366; }
     .floating-socials .fs-icon.whatsapp:hover { background: #25D366; }
     .floating-socials .fs-icon.whatsapp:hover svg { fill: #ffffff; }
+    @media (max-width: 768px) {
+      .floating-socials {
+        bottom: 16px;
+        gap: 12px;
+        padding: 8px 14px;
+      }
+      .floating-socials .fs-icon {
+        width: 36px;
+        height: 36px;
+      }
+      .floating-socials .fs-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
 
     /* FOOTER */
     .footer {
@@ -609,7 +801,9 @@
       <nav class="desktop-nav">
         <ul class="nav-menu">
           <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
           <li><a href="#events">Events</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -620,14 +814,16 @@
     </div>
   </header>
 
-  <!-- Mobile menu - completely separate, display:none by default -->
+  <!-- Mobile menu -->
   <div class="mobile-menu-overlay" id="mobileMenuOverlay">
     <div class="backdrop" id="menuBackdrop"></div>
     <div class="mobile-menu-panel">
       <nav>
         <ul class="mobile-menu-nav">
           <li><a href="#home" class="mobile-nav-link">Home</a></li>
+          <li><a href="#about" class="mobile-nav-link">About</a></li>
           <li><a href="#events" class="mobile-nav-link">Events</a></li>
+          <li><a href="#testimonials" class="mobile-nav-link">Testimonials</a></li>
           <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
         </ul>
       </nav>
@@ -651,9 +847,50 @@
     <!-- PAGINATION DOTS -->
     <div class="pagination-dots">
       <span class="dot active" data-section="home"></span>
+      <span class="dot" data-section="about"></span>
       <span class="dot" data-section="events"></span>
+      <span class="dot" data-section="testimonials"></span>
       <span class="dot" data-section="contact"></span>
     </div>
+
+    <!-- WELCOME / ABOUT -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">Welcome, I'm Sandy</h2>
+        <div class="section-subtitle">Your story, beautifully told</div>
+        <div class="welcome-content">
+          <p>Hello and welcome – I'm a professional celebrant based in South Africa, specializing in creating ceremonies that are not only meaningful and memorable, but delivered with the perfect blend of sincerity, warmth, and just the right touch of humour when the moment calls for it.</p>
+          <p>Whether you're tying the knot, welcoming a new life, or renewing your vows, I bring a calm, respectful presence, a listening ear, and a genuine gift for storytelling that captures the heart of every occasion. I take my role seriously — but not too seriously.</p>
+          <p>Life is full of emotion, and I believe ceremonies should reflect the real you — with heart, with honesty, and with all the little details that make your story unique. Let's create a ceremony that feels just right — professional, personal, and perfectly you.</p>
+          <p class="signature">Sandy xx</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE SECTION -->
+    <section style="padding-top: 0;">
+      <div class="container">
+        <h2 class="section-title">Why Choose Celebrant Sandy?</h2>
+        <div class="section-subtitle">What makes the difference</div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">💛</div>
+            <h3>She's Real</h3>
+            <p>No fluff, no fake — just a celebrant who genuinely cares, listens deeply, and gets what matters to you.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3>She Knows Her Stuff</h3>
+            <p>From the first chat to the final kiss — Sandy keeps it fun, stress-free, and beautifully, authentically you.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🌈</div>
+            <h3>She Delivers</h3>
+            <p>Rain, nerves or unexpected hiccups — Sandy keeps your ceremony rolling with grace, calm, and a smile.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- EVENTS CAROUSEL -->
     <section id="events">
@@ -664,6 +901,40 @@
           <div class="carousel-track" id="carouselTrack"></div>
           <button class="carousel-btn prev-btn" id="prevBtn" aria-label="Previous event">‹</button>
           <button class="carousel-btn next-btn" id="nextBtn" aria-label="Next event">›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <div class="container">
+        <h2 class="section-title">Heartfelt Words</h2>
+        <div class="section-subtitle">From beautiful souls I've worked with</div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p class="quote">Sandy made the whole process seamless. From our first meeting we knew we wanted her as our celebrant – she's lovely, easy to talk to, and made the ceremony unforgettable. Her words were touching and magical.</p>
+            <p class="author">— G & T Ward</p>
+          </div>
+          <div class="testimonial-card">
+            <p class="quote">Sandy helped us through one of the most difficult times with such kindness and grace. Her words truly captured our father's personality and spirit. We are forever grateful.</p>
+            <p class="author">— The Martin Family</p>
+          </div>
+          <div class="testimonial-card">
+            <p class="quote">We cannot thank Sandy enough. Her friendly, confident and professional nature made planning the ceremony fun. Her experience and strong communication meant everything ran smoothly on our special day.</p>
+            <p class="author">— Mrs T Wilson, Christchurch</p>
+          </div>
+          <div class="testimonial-card">
+            <p class="quote">Sandy tailored the ceremony perfectly to suit us, capturing our personalities and relationship in such a genuine and heartfelt way. It felt like us, through and through. She made our day unforgettable.</p>
+            <p class="author">— K & T Searle</p>
+          </div>
+          <div class="testimonial-card">
+            <p class="quote">The lovely Sandy quickly formed a great rapport with the family, gathering information in the most warm, sensitive and caring way. We all felt very supported and highly recommend her.</p>
+            <p class="author">— K Ward, Nelson</p>
+          </div>
+          <div class="testimonial-card">
+            <p class="quote">Sandy, thank you for the beautiful way you honoured Mum. Your words captured her spirit perfectly, and the service felt heartfelt and genuine. We are so grateful for the care and warmth you brought.</p>
+            <p class="author">— S Bennet</p>
+          </div>
         </div>
       </div>
     </section>
@@ -745,19 +1016,13 @@
       }
       
       hamburger.addEventListener('click', () => {
-        if (mobileMenuOverlay.classList.contains('active')) {
-          closeMenu();
-        } else {
-          openMenu();
-        }
+        mobileMenuOverlay.classList.contains('active') ? closeMenu() : openMenu();
       });
       
       menuBackdrop.addEventListener('click', closeMenu);
       
       document.querySelectorAll('.mobile-nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-          closeMenu();
-        });
+        link.addEventListener('click', closeMenu);
       });
 
       // Header scroll effect
@@ -771,9 +1036,7 @@
         anchor.addEventListener('click', function(e) {
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
       });
 
@@ -829,7 +1092,7 @@
       let prevTranslate = 0;
 
       function updateCardsPerView() {
-        cardsPerView = window.innerWidth >= 768 ? 2 : 1;
+        cardsPerView = window.innerWidth >= 769 ? 2 : 1;
       }
 
       function renderEvents() {
@@ -843,7 +1106,10 @@
       }
 
       function getCardWidth() {
-        return track.firstElementChild ? track.firstElementChild.offsetWidth + 20 : 0;
+        const firstCard = track.firstElementChild;
+        if (!firstCard) return 0;
+        const isDesktop = window.innerWidth >= 769;
+        return isDesktop ? firstCard.offsetWidth + 20 : firstCard.offsetWidth;
       }
 
       function moveCarousel(animate = true) {
@@ -855,18 +1121,22 @@
       }
 
       function nextSlide() {
-        currentIndex = currentIndex < events.length - cardsPerView ? currentIndex + 1 : 0;
+        const maxIndex = events.length - cardsPerView;
+        currentIndex = currentIndex < maxIndex ? currentIndex + 1 : 0;
         moveCarousel();
       }
 
       function prevSlide() {
-        currentIndex = currentIndex > 0 ? currentIndex - 1 : events.length - cardsPerView;
+        const maxIndex = events.length - cardsPerView;
+        currentIndex = currentIndex > 0 ? currentIndex - 1 : maxIndex;
         moveCarousel();
       }
 
       function snapToNearestCard() {
         const cardWidth = getCardWidth();
-        currentIndex = Math.max(0, Math.min(Math.round(Math.abs(currentTranslate) / cardWidth), events.length - cardsPerView));
+        const nearestIndex = Math.round(Math.abs(currentTranslate) / cardWidth);
+        const maxIndex = events.length - cardsPerView;
+        currentIndex = Math.max(0, Math.min(nearestIndex, maxIndex));
         moveCarousel();
       }
 
@@ -888,7 +1158,8 @@
         if (!isDragging) return;
         event.preventDefault();
         const diff = (event.type.includes('mouse') ? event.pageX : event.touches[0].clientX) - startPos;
-        const minTranslate = -((events.length - cardsPerView) * getCardWidth());
+        const cardWidth = getCardWidth();
+        const minTranslate = -((events.length - cardsPerView) * cardWidth);
         currentTranslate = Math.max(minTranslate, Math.min(0, prevTranslate + diff));
         track.style.transform = `translateX(${currentTranslate}px)`;
       }
