@@ -62,81 +62,196 @@
       --white: #f5f0eb;
     }
 
-    /* HEADER */
+    /* HEADER - Modern Redesign */
     .site-header {
       position: sticky;
       top: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(217, 122, 154, 0.2);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 0;
+    }
+    .site-header.scrolled {
       background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(12px);
-      z-index: 100;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(217, 122, 154, 0.15);
+      box-shadow: 0 4px 30px rgba(217, 122, 154, 0.1);
     }
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 1200px;
+      max-width: 1300px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 15px 30px;
+      gap: 40px;
+    }
+    .logo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+    .logo:hover {
+      transform: scale(1.02);
     }
     .logo img {
-      height: 50px;
+      height: 60px;
       width: auto;
+      filter: drop-shadow(0 0 20px rgba(217, 122, 154, 0.3));
+      transition: filter 0.3s ease;
+    }
+    .logo:hover img {
+      filter: drop-shadow(0 0 30px rgba(217, 122, 154, 0.5));
+    }
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 30px;
     }
     .nav-menu {
       display: flex;
-      gap: 2.2rem;
+      gap: 2.5rem;
       align-items: center;
       list-style: none;
     }
     .nav-menu a {
       font-weight: 400;
       color: var(--white);
-      transition: color 0.3s ease;
-      font-size: 0.95rem;
-      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      letter-spacing: 0.8px;
+      position: relative;
+      padding: 5px 0;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+    }
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--pink-accent);
+      transition: width 0.3s ease;
     }
     .nav-menu a:hover {
+      color: var(--pink-light);
+    }
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+    .nav-cta {
+      background: transparent;
+      border: 1.5px solid var(--pink-accent);
       color: var(--pink-accent);
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .nav-cta:hover {
+      background: var(--pink-accent);
+      color: var(--black);
+      box-shadow: 0 0 30px rgba(217, 122, 154, 0.4);
+      transform: translateY(-1px);
     }
     .hamburger {
       display: none;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
       background: none;
       border: none;
       cursor: pointer;
       padding: 10px;
+      z-index: 1001;
     }
     .hamburger span {
       display: block;
-      width: 26px;
-      height: 2.5px;
+      width: 28px;
+      height: 2px;
       background: var(--white);
       border-radius: 4px;
-      transition: 0.3s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: center;
     }
-    @media (max-width: 768px) {
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+    @media (max-width: 968px) {
+      .header-inner {
+        padding: 12px 20px;
+        gap: 20px;
+      }
+      .logo img {
+        height: 50px;
+      }
+      .nav-cta {
+        display: none;
+      }
       .hamburger {
         display: flex;
       }
-      .nav-menu {
-        position: absolute;
-        top: 70px;
-        left: 0;
+      .nav-wrapper {
+        position: fixed;
+        top: 0;
+        right: -100%;
         width: 100%;
+        max-width: 400px;
+        height: 100vh;
         background: rgba(10, 10, 10, 0.98);
-        backdrop-filter: blur(15px);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
         flex-direction: column;
         align-items: center;
-        padding: 30px 0;
-        gap: 1.8rem;
-        display: none;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+        justify-content: center;
+        padding: 80px 30px;
+        gap: 3rem;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+        border-left: 1px solid rgba(217, 122, 154, 0.15);
       }
-      .nav-menu.active {
-        display: flex;
+      .nav-wrapper.active {
+        right: 0;
+      }
+      .nav-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem;
+      }
+      .nav-menu a {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+      }
+      .nav-menu a::after {
+        bottom: -5px;
+        height: 1px;
+      }
+      .mobile-cta {
+        display: block !important;
+        margin-top: 10px;
+      }
+    }
+    @media (min-width: 969px) {
+      .mobile-cta {
+        display: none !important;
       }
     }
 
@@ -206,14 +321,14 @@
 
     /* PAGINATION DOTS */
     .pagination-dots {
-      position: absolute;
+      position: fixed;
       right: 30px;
       top: 50%;
       transform: translateY(-50%);
       display: flex;
       flex-direction: column;
       gap: 14px;
-      z-index: 10;
+      z-index: 99;
     }
     .dot {
       width: 12px;
@@ -421,7 +536,7 @@
 </head>
 <body>
 
-  <header class="site-header">
+  <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <div class="logo">
         <img src="logo.png" alt="Celebrant Sandy">
@@ -429,20 +544,24 @@
       <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-      <nav>
-        <ul class="nav-menu" id="navMenu">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+      <div class="nav-wrapper" id="navWrapper">
+        <nav>
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <a href="#contact" class="nav-cta mobile-cta" style="display: none;">Book Now</a>
+      </div>
+      <a href="#contact" class="nav-cta desktop-cta">Book Now</a>
     </div>
   </header>
 
   <main>
     <!-- HERO -->
     <section id="home" class="hero">
-      <video class="hero-video" autoplay muted playsinline poster="event_001.jpg">
+      <video class="hero-video" autoplay muted loop playsinline poster="event_001.png">
         <source src="hero_background.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -451,12 +570,14 @@
         <p class="script-font" style="font-size: 1.8rem; color: var(--pink-accent); margin-top: -10px;">Because in your dreams, every detail matters</p>
         <a href="#contact" class="btn">Book Your Ceremony</a>
       </div>
-      <div class="pagination-dots">
-        <span class="dot active" data-section="home"></span>
-        <span class="dot" data-section="events"></span>
-        <span class="dot" data-section="contact"></span>
-      </div>
     </section>
+
+    <!-- PAGINATION DOTS - Fixed on viewport -->
+    <div class="pagination-dots">
+      <span class="dot active" data-section="home"></span>
+      <span class="dot" data-section="events"></span>
+      <span class="dot" data-section="contact"></span>
+    </div>
 
     <!-- EVENTS CAROUSEL -->
     <section id="events">
@@ -537,11 +658,35 @@
     (function() {
       // Mobile menu
       const hamburger = document.getElementById('hamburger');
+      const navWrapper = document.getElementById('navWrapper');
       const navMenu = document.getElementById('navMenu');
+      
       hamburger.addEventListener('click', () => {
         const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
         hamburger.setAttribute('aria-expanded', !expanded);
-        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+        navWrapper.classList.toggle('active');
+        document.body.style.overflow = navWrapper.classList.contains('active') ? 'hidden' : '';
+      });
+
+      // Close menu when clicking a nav link
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          navWrapper.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+
+      // Header scroll effect
+      const siteHeader = document.getElementById('siteHeader');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          siteHeader.classList.add('scrolled');
+        } else {
+          siteHeader.classList.remove('scrolled');
+        }
       });
 
       // Smooth scroll
@@ -551,10 +696,6 @@
           const target = document.querySelector(this.getAttribute('href'));
           if (target) {
             target.scrollIntoView({ behavior: 'smooth' });
-            if (navMenu.classList.contains('active')) {
-              navMenu.classList.remove('active');
-              hamburger.setAttribute('aria-expanded', 'false');
-            }
           }
         });
       });
@@ -585,10 +726,10 @@
 
       // Events carousel
       const events = [
-        { event_name: "Enchanted Garden Wedding", event_description: "A romantic ceremony surrounded by roses and ivy, personalized vows under a floral arch.", photo_list: ["event_001.jpg"] },
-        { event_name: "Starry Night Vow Renewal", event_description: "Intimate evening celebration with twinkling lights and a heartfelt reaffirmation of love.", photo_list: ["event_002.jpg"] },
-        { event_name: "Whimsical Baby Naming", event_description: "A joyful gathering to welcome a new soul, complete with blessings and butterfly release.", photo_list: ["event_003.jpg"] },
-        { event_name: "Sunset Beach Elopement", event_description: "Barefoot elegance on the sand, with the sound of waves as your ceremony music.", photo_list: ["event_004.jpg"] }
+        { event_name: "Enchanted Garden Wedding", event_description: "A romantic ceremony surrounded by roses and ivy, personalized vows under a floral arch.", photo_list: ["event_001.png"] },
+        { event_name: "Starry Night Vow Renewal", event_description: "Intimate evening celebration with twinkling lights and a heartfelt reaffirmation of love.", photo_list: ["event_002.png"] },
+        { event_name: "Whimsical Baby Naming", event_description: "A joyful gathering to welcome a new soul, complete with blessings and butterfly release.", photo_list: ["event_003.png"] },
+        { event_name: "Sunset Beach Elopement", event_description: "Barefoot elegance on the sand, with the sound of waves as your ceremony music.", photo_list: ["event_004.png"] }
       ];
 
       const track = document.getElementById('carouselTrack');
@@ -607,7 +748,7 @@
         events.forEach(event => {
           const card = document.createElement('div');
           card.className = 'event-card';
-          const imgSrc = event.photo_list[0] || 'event_001.jpg';
+          const imgSrc = event.photo_list[0] || 'event_001.png';
           card.innerHTML = `
             <img src="${imgSrc}" alt="${event.event_name}">
             <div class="event-details">
@@ -622,7 +763,7 @@
       function moveCarousel() {
         const firstCard = track.firstElementChild;
         if (!firstCard) return;
-        const cardWidth = firstCard.offsetWidth + 20; // 20px for margins
+        const cardWidth = firstCard.offsetWidth + 20;
         const offset = currentIndex * cardWidth;
         track.style.transform = `translateX(-${offset}px)`;
       }
