@@ -15,6 +15,11 @@
   <meta name="theme-color" content="#0a0a0a">
   <title>Celebrant Sandy | Bespoke Ceremonies in South Africa</title>
   
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="logo.png">
+  
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -120,8 +125,6 @@
       font-weight: 400;
       color: var(--white);
       transition: all 0.3s ease;
-      font-size: 1rem;
-      letter-spacing: 0.8px;
       position: relative;
       padding: 5px 0;
       text-transform: uppercase;
@@ -195,6 +198,7 @@
     .hamburger.active span:nth-child(3) {
       transform: rotate(-45deg) translate(6px, -6px);
     }
+    
     @media (max-width: 968px) {
       .header-inner {
         padding: 12px 20px;
@@ -203,7 +207,7 @@
       .logo img {
         height: 50px;
       }
-      .nav-cta {
+      .desktop-cta {
         display: none;
       }
       .hamburger {
@@ -216,6 +220,7 @@
         width: 100%;
         max-width: 400px;
         height: 100vh;
+        height: 100dvh;
         background: rgba(10, 10, 10, 0.98);
         backdrop-filter: blur(30px);
         -webkit-backdrop-filter: blur(30px);
@@ -227,9 +232,14 @@
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
         border-left: 1px solid rgba(217, 122, 154, 0.15);
+        visibility: hidden;
+        opacity: 0;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s, opacity 0.4s;
       }
       .nav-wrapper.active {
         right: 0;
+        visibility: visible;
+        opacity: 1;
       }
       .nav-menu {
         flex-direction: column;
@@ -252,6 +262,10 @@
     @media (min-width: 969px) {
       .mobile-cta {
         display: none !important;
+      }
+      .nav-wrapper {
+        visibility: visible;
+        opacity: 1;
       }
     }
 
@@ -369,10 +383,15 @@
       margin: 0 auto;
       overflow: hidden;
       padding: 0 10px;
+      touch-action: pan-y pinch-zoom;
     }
     .carousel-track {
       display: flex;
       transition: transform 0.5s ease-in-out;
+      cursor: grab;
+    }
+    .carousel-track:active {
+      cursor: grabbing;
     }
     .event-card {
       flex: 0 0 100%;
@@ -382,6 +401,8 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      user-select: none;
+      -webkit-user-select: none;
     }
     @media (min-width: 768px) {
       .event-card {
@@ -393,6 +414,7 @@
       width: 100%;
       height: 280px;
       object-fit: cover;
+      pointer-events: none;
     }
     .event-details {
       padding: 25px;
@@ -561,7 +583,7 @@
   <main>
     <!-- HERO -->
     <section id="home" class="hero">
-      <video class="hero-video" autoplay muted playsinline poster="event_001.png">
+      <video class="hero-video" autoplay muted loop playsinline poster="event_001.png">
         <source src="hero_background.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -724,7 +746,7 @@
         });
       });
 
-      // Events carousel
+      // Events carousel with touch swipe support
       const events = [
         { event_name: "Enchanted Garden Wedding", event_description: "A romantic ceremony surrounded by roses and ivy, personalized vows under a floral arch.", photo_list: ["event_001.png"] },
         { event_name: "Starry Night Vow Renewal", event_description: "Intimate evening celebration with twinkling lights and a heartfelt reaffirmation of love.", photo_list: ["event_002.png"] },
@@ -738,6 +760,11 @@
       let currentIndex = 0;
       let cardsPerView = 1;
       let autoSlideInterval;
+      let isDragging = false;
+      let startPos = 0;
+      let currentTranslate = 0;
+      let prevTranslate = 0;
+      let animationID = 0;
 
       function updateCardsPerView() {
         cardsPerView = window.innerWidth >= 768 ? 2 : 1;
@@ -750,7 +777,7 @@
           card.className = 'event-card';
           const imgSrc = event.photo_list[0] || 'event_001.png';
           card.innerHTML = `
-            <img src="${imgSrc}" alt="${event.event_name}">
+            <img src="${imgSrc}" alt="${event.event_name}" draggable="false">
             <div class="event-details">
               <h3>${event.event_name}</h3>
               <p>${event.event_description}</p>
@@ -760,12 +787,18 @@
         });
       }
 
-      function moveCarousel() {
+      function getCardWidth() {
         const firstCard = track.firstElementChild;
-        if (!firstCard) return;
-        const cardWidth = firstCard.offsetWidth + 20;
+        return firstCard ? firstCard.offsetWidth + 20 : 0;
+      }
+
+      function moveCarousel(animate = true) {
+        const cardWidth = getCardWidth();
         const offset = currentIndex * cardWidth;
+        track.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
         track.style.transform = `translateX(-${offset}px)`;
+        currentTranslate = -offset;
+        prevTranslate = -offset;
       }
 
       function nextSlide() {
@@ -780,10 +813,69 @@
         moveCarousel();
       }
 
+      function snapToNearestCard() {
+        const cardWidth = getCardWidth();
+        const nearestIndex = Math.round(Math.abs(currentTranslate) / cardWidth);
+        const maxIndex = events.length - cardsPerView;
+        currentIndex = Math.max(0, Math.min(nearestIndex, maxIndex));
+        moveCarousel();
+      }
+
       function resetAutoSlide() {
         clearInterval(autoSlideInterval);
         autoSlideInterval = setInterval(nextSlide, 5000);
       }
+
+      // Touch events for swipe
+      function touchStart(event) {
+        if (event.target.closest('.carousel-btn')) return;
+        isDragging = true;
+        startPos = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        track.style.transition = 'none';
+        track.style.cursor = 'grabbing';
+        clearInterval(autoSlideInterval);
+        cancelAnimationFrame(animationID);
+      }
+
+      function touchMove(event) {
+        if (!isDragging) return;
+        event.preventDefault();
+        const currentPosition = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        const diff = currentPosition - startPos;
+        const cardWidth = getCardWidth();
+        const maxTranslate = 0;
+        const minTranslate = -((events.length - cardsPerView) * cardWidth);
+        
+        let newTranslate = prevTranslate + diff;
+        newTranslate = Math.max(minTranslate, Math.min(maxTranslate, newTranslate));
+        
+        track.style.transform = `translateX(${newTranslate}px)`;
+        currentTranslate = newTranslate;
+      }
+
+      function touchEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        track.style.cursor = 'grab';
+        snapToNearestCard();
+        resetAutoSlide();
+      }
+
+      // Mouse events for desktop swipe
+      track.addEventListener('mousedown', touchStart);
+      track.addEventListener('mousemove', touchMove);
+      track.addEventListener('mouseup', touchEnd);
+      track.addEventListener('mouseleave', () => {
+        if (isDragging) touchEnd();
+      });
+
+      // Touch events for mobile
+      track.addEventListener('touchstart', touchStart, { passive: false });
+      track.addEventListener('touchmove', touchMove, { passive: false });
+      track.addEventListener('touchend', touchEnd);
+
+      // Prevent image drag
+      track.addEventListener('dragstart', (e) => e.preventDefault());
 
       updateCardsPerView();
       renderEvents();
@@ -795,7 +887,7 @@
         if (currentIndex > events.length - cardsPerView) {
           currentIndex = Math.max(0, events.length - cardsPerView);
         }
-        moveCarousel();
+        moveCarousel(false);
       });
 
       nextBtn.addEventListener('click', () => {
