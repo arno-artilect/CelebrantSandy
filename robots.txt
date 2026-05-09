@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+
+Sitemap: https://www.celebrantsandy.co.za/sitemap.xml
+
+# Crawl delay to be respectful to server
+Crawl-delay: 10
+
+# Block common unwanted crawlers
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
